@@ -24,28 +24,32 @@ The platform runs on a robust schema structured around a central transactional n
 * **Orders:** Records transaction specifics like order dates, shipping dates, and fulfillment statuses.
 * **Order Details:** Captures granular line-item records including ordered quantities, applied prices, and item discounts.
 
-┌──────────────────────────┐               ┌──────────────────────────┐
-│        CUSTOMERS         │               │         PRODUCTS         │
-├──────────────────────────┤               ├──────────────────────────┤
-│ PK │ custId (INT, AI)    │               │ PK │ prodId (INT, AI)    │
-│    │ custName (VARCHAR)  │               │    │ prodName (VARCHAR)  │
-│    │ gender (ENUM)       │               │    │ category (VARCHAR)  │
-│    │ city (VARCHAR)      │               │    │ unitPrice (DECIMAL) │
-└────────────┬─────────────┘               └─────────────┬────────────┘
-│ 1                                         │ 1
-│                                           │
-│ N                                         │ N
-┌────────────▼─────────────┐               ┌─────────────▼────────────┐
-│          ORDERS          │               │      ORDER DETAILS       │
-├──────────────────────────┤               ├──────────────────────────┤
-│ PK │ orderId (INT, AI)   │ 1           N │ PK │ detailId (INT, AI)  │
-│ FK │ custId (INT) ───────┼───────────────► FK │ orderId (INT)       │
-│    │ orderDate (DATE)    │               │ FK │ prodId (INT)        │
-│    │ shipDate (DATE)     │               │    │ quantity (INT)      │
-│    │ orderStatus (ENUM)  │               │    │ price (DECIMAL)     │
-│    └─────────────────────┘               │    │ discount (DECIMAL)  │
-└──────────────────────────┘
+| Table Name | Column Name | Data Type | Key Type | Properties |
+| :--- | :--- | :--- | :--- | :--- |
+| **CUSTOMERS** | `custId` | INT | **PK** | Auto Increment (AI) |
+| | `custName` | VARCHAR | | |
+| | `gender` | ENUM | | |
+| | `city` | VARCHAR | | |
+| **PRODUCTS** | `prodId` | INT | **PK** | Auto Increment (AI) |
+| | `prodName` | VARCHAR | | |
+| | `category` | VARCHAR | | |
+| | `unitPrice` | DECIMAL | | |
+| **ORDERS** | `orderId` | INT | **PK** | Auto Increment (AI) |
+| | `custId` | INT | **FK** | References `CUSTOMERS(custId)` |
+| | `orderDate` | DATE | | |
+| | `shipDate` | DATE | | |
+| | `orderStatus` | ENUM | | |
+| **ORDER DETAILS** | `detailId` | INT | **PK** | Auto Increment (AI) |
+| | `orderId` | INT | **FK** | References `ORDERS(orderId)` |
+| | `prodId` | INT | **FK** | References `PRODUCTS(prodId)` |
+| | `quantity` | INT | | |
+| | `price` | DECIMAL | | |
+| | `discount` | DECIMAL | | |
 
+### 🔗 Table Relationships
+* **CUSTOMERS to ORDERS:** 1-to-Many (`1` customer can place `N` orders)
+* **PRODUCTS to ORDER DETAILS:** 1-to-Many (`1` product can appear in `N` order line-items)
+* **ORDERS to ORDER DETAILS:** 1-to-Many (`1` order can contain `N` individual item entries)
 
 ---
 
@@ -68,4 +72,4 @@ The query workbook is organized progressively by complexity to evaluate your dat
 
   ## Previews of my Queries
 
-![Retail-Sales-Analysis-Using-SQL](level%20-%201.png)  
+![Retail-Sales-Analysis-Using-SQL](level-1.png)  
