@@ -68,4 +68,4 @@ The query workbook is organized progressively by complexity to evaluate your dat
 
   ## Previews of my Queries
 
-[!Retail-Sales-Analysis-Using-SQL](level%20-%201.png)  
+![Retail-Sales-Analysis-Using-SQL](level%20-%201.png)  
