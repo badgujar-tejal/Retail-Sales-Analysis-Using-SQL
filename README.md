@@ -71,5 +71,18 @@ The query workbook is organized progressively by complexity to evaluate your dat
 * **Level 3: Advanced Analytics (23–35):** Complex analytics structures including window functions (`RANK() OVER`), time-series aging vectors, and automated customer behavioral clustering.
 
   ## Previews of my Queries
+  ### Level 1 Queries Preview
 
-![Retail-Sales-Analysis-Using-SQL](level-1.png)  
+![Retail-Sales-Analysis-Using-SQL](level-1.png) 
+
+### Level 2 Queries Preview
+
+![Retail-Sales-Analysis-Using-SQL](level-2.png)
+
+### Level 3 Queries Preview
+
+![Retail-Sales-Analysis-Using-SQL](level-3a.png)
+
+### Level 3 Queries Preview
+
+![Retail-Sales-Analysis-Using-SQL](level-3b.png)
